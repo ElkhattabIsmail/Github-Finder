@@ -1,0 +1,263 @@
+
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+/* VARIABLES (Dark Mode) */
+:root {
+--bg: #0d1117;
+--card: #161b22;
+--text: #e6edf3;
+--primary: #58a6ff;
+--secondary: #30363d;
+--error: #ff6b6b;
+}
+
+/* BODY */
+body {
+font-family: Arial, sans-serif;
+background: var(--bg);
+color: var(--text);
+}
+
+/* HEADER */
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+border-bottom: 1px solid var(--secondary);
+}
+
+/* CONTAINER */
+.container {
+max-width: 1200px;
+margin: auto;
+padding: 20px;
+}
+
+/* SEARCH */
+.search-section {
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+input {
+flex: 1;
+padding: 10px;
+border: none;
+background: var(--card);
+color: var(--text);
+}
+
+input:focus {
+outline: 1px solid var(--primary);
+}
+
+/* BUTTONS */
+.btn {
+padding: 10px 15px;
+border: none;
+cursor: pointer;
+color: white;
+}
+
+.primary {
+background: var(--primary);
+}
+
+.secondary {
+background: var(--secondary);
+}
+
+/* STATES */
+.state {
+text-align: center;
+margin-top: 20px;
+}
+
+/* .hidden {
+display: none;
+} */
+
+/* CARD */
+.card {
+background: var(--card);
+padding: 20px;
+border-radius: 10px;
+text-align: left;
+}
+
+/* PROFILE */
+.profile {
+display: flex;
+gap: 20px;
+align-items: center;
+}
+
+.profile img {
+width: 100px;
+border-radius: 50%;
+}
+
+/* GRID (Bookmarks) */
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+gap: 15px;
+}
+
+/* BOOKMARK CARD */
+.bookmark-card {
+background: var(--card);
+padding: 10px;
+border-radius: 8px;
+text-align: center;
+cursor: pointer;
+}
+
+/* ERROR */
+.error-text {
+color: var(--error);
+}
+
+/* LOADER */
+.loader {
+border: 4px solid var(--secondary);
+border-top: 4px solid var(--primary);
+border-radius: 50%;
+width: 40px;
+height: 40px;
+margin: auto;
+animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+to {
+transform: rotate(360deg);
+}
+}
+
+
+
+:root {
+    --card-bg: #161b22;
+    --body-bg: #0d1117;
+    --border-color: #30363d;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent-green: #238636;
+    --accent-hover: #2ea043;
+    --bookmark-color: #e3b341;
+}
+
+.github-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 380px;
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.github-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+    margin-bottom: 15px;
+}
+
+.username {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.bio {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* الإحصائيات باستخدام Flexbox */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--body-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* الأزرار */
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-visit {
+    display: block;
+    text-decoration: none;
+    background-color: var(--accent-green);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-visit:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-bookmark {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-bookmark:hover {
+    background-color: #21262d;
+    border-color: var(--text-secondary);
+}
+
+.btn-bookmark .icon {
+    color: var(--bookmark-color);
+}
