@@ -1,0 +1,80 @@
+
+
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>GitHub Finder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+
+  <header class="header">
+    <h1>GitHub Finder</h1>
+    <button id="toggleBookmarks" class="btn secondary">
+      ⭐ Favoris (<span id="bookmarkCount">0</span>)
+    </button>
+  </header>
+
+  <!-- MAIN -->
+
+  <main class="container">
+
+<!-- SEARCH -->
+<section class="search-section">
+  <input 
+    type="text"
+    id="searchInput" 
+    placeholder="Entrer un username GitHub..."
+  >
+  <button id="searchBtn" class="btn primary">Search</button>
+</section>
+
+<!-- WELCOME -->
+<section id="welcomeSection" class="state">
+  <p>🔍 Recherchez un développeur GitHub pour afficher son profil.</p>
+</section>
+
+<!-- LOADING -->
+<section id="loadingSection" class="state hidden">
+  <div class="loader"></div>
+  <p>Chargement...</p>
+</section>
+
+<!-- ERROR -->
+<section id="errorSection" class="state hidden">
+  <p class="error-text">❌ Utilisateur non trouvé</p>
+</section>
+
+<!-- RESULT -->
+<section id="resultSection" class="state hidden">
+  <div class="card" id="profileCard">
+    
+  </div>
+</section>
+
+<!-- BOOKMARKS -->
+<section id="bookmarksSection" class="state hidden">
+  <h2>⭐ Favoris</h2>
+  <div id="bookmarksList" class="grid">
+    
+  </div>
+</section>
+
+
+<section id="TopReposSection" class="state hidden">
+  <h2>⭐ Top Reporisotoris</h2>
+  <div id="bookmarksList" class="grid">
+    
+  </div>
+</section>
+
+</main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
