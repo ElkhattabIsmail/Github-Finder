@@ -1,275 +1,146 @@
-
-/* RESET */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
-
-/* VARIABLES (Dark Mode) */
+/* RESET & VARIABLES */
 :root {
---bg: #0d1117;
---card: #161b22;
---text: #e6edf3;
---primary: #58a6ff;
---secondary: #30363d;
---error: #ff6b6b;
+    --bg-main: #0d1117;
+    --bg-card: #161b22;
+    --border-color: #30363d;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent-blue: #1f6feb;
+    --accent-green: #238636;
+    --accent-red: #da3633;
+    --star-yellow: #e3b341;
 }
 
-/* BODY */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-font-family: Arial, sans-serif;
-background: var(--bg);
-color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
 }
+
+.container { max-width: 900px; margin: auto; padding: 20px; }
+
+/* UTILS */
+/* .hidden { display: none !important; } */
 
 /* HEADER */
 .header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 20px;
-border-bottom: 1px solid var(--secondary);
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    margin-bottom: 20px;
 }
-
-/* CONTAINER */
-.container {
-max-width: 1200px;
-margin: auto;
-padding: 20px;
+.header-content {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
 /* SEARCH */
 .search-section {
-display: flex;
-gap: 10px;
-margin-bottom: 20px;
-padding: 30px;
+    display: flex;
+    gap: 10px;
+    margin: 20px 0 40px;
 }
-
-#loadingSection p {
-    padding-top: 20px;
-    
-}
-
 input {
-flex: 1;
-height: 50px;
-padding: 10px;
-border: none;
-border-radius: 12px;
-background: var(--card);
-color: var(--text);
+    flex: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 12px;
+    color: white;
 }
+input:focus { outline: 2px solid var(--accent-blue); }
 
-input:focus {
-outline: 1px solid var(--primary);
+
+#welcomeSection 
+{
+    display: flex;
+    justify-content: center;
 }
-
-.Static-Section {
-    background-color: var(--secondary);
-}
-/* BUTTONS */
-.btn {
-padding: 10px 15px;
-border: none;
-border-radius: 12px;
-cursor: pointer;
-color: white;
-}
-
-.primary {
-background: var(--primary);
-}
-
-.secondary {
-background: var(--secondary);
-}
-
-/* STATES */
-.state {
-text-align: center;
-margin-top: 20px;
-}
-
-/* .hidden {
-display: none;
-} */
-
-/* CARD */
-.card {
-background: var(--card);
-padding: 20px;
-border-radius: 10px;
-text-align: left;
-}
-
-/* PROFILE */
-.profile {
-display: flex;
-gap: 20px;
-align-items: center;
-}
-
-.profile img {
-width: 100px;
-border-radius: 50%;
-}
-
-/* GRID (Bookmarks) */
-.grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-gap: 15px;
-}
-
-/* BOOKMARK CARD */
-.bookmark-card {
-background: var(--card);
-padding: 10px;
-border-radius: 8px;
-text-align: center;
-cursor: pointer;
-}
-
-/* ERROR */
-.error-text {
-color: var(--error);
-}
-
-/* LOADER */
-.loader {
-border: 4px solid var(--secondary);
-border-top: 4px solid var(--primary);
-border-radius: 50%;
-width: 40px;
-height: 40px;
-margin: auto;
-animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-to {
-transform: rotate(360deg);
-}
-}
-
-
-
-:root {
-    --card-bg: #161b22;
-    --body-bg: #0d1117;
-    --border-color: #30363d;
-    --text-primary: #c9d1d9;
-    --text-secondary: #8b949e;
-    --accent-green: #238636;
-    --accent-hover: #2ea043;
-    --bookmark-color: #e3b341;
-}
-
+/* MAIN GITHUB CARD */
 .github-card {
-    background-color: var(--card-bg);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 24px;
-    max-width: 380px;
-    color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    max-width: 450px;
+    margin: 20px auto;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
 }
-
-.github-card:hover {
-    transform: translateY(-5px);
-}
-
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid var(--border-color);
-    margin-bottom: 15px;
-}
-
-.username {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-}
-
-.bio {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
-
-/* الإحصائيات باستخدام Flexbox */
+.profile-pic { width: 100px; border-radius: 50%; border: 3px solid var(--border-color); margin-bottom: 10px;}
 .stats-container {
     display: flex;
     justify-content: space-around;
-    background-color: var(--body-bg);
+    background: var(--bg-main);
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.stat-value {
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.stat-label {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-}
-
-/* الأزرار */
-.card-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .btn-visit {
     display: block;
-    text-decoration: none;
-    background-color: var(--accent-green);
+    background: var(--accent-green);
     color: white;
+    text-decoration: none;
     padding: 10px;
     border-radius: 6px;
-    font-weight: 600;
-    transition: background 0.2s;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.btn-visit:hover {
-    background-color: var(--accent-hover);
-}
+/* IMAGE 1 STYLE: BOOKMARKED USERS ROW */
+.section-title { font-size: 20px; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
 
-.btn-bookmark {
-    background: transparent;
+.user-bookmark-row {
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
+    border-radius: 8px;
+    padding: 12px 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    margin-bottom: 10px;
 }
+.user-meta { display: flex; align-items: center; gap: 15px; }
+.avatar-sm { width: 45px; height: 45px; border-radius: 50%; }
+.user-names { display: flex; flex-direction: column; text-align: left; }
+.full-name { font-weight: bold; font-size: 15px; }
+.user-handle { color: var(--text-secondary); font-size: 13px; }
 
-.btn-bookmark:hover {
-    background-color: #21262d;
-    border-color: var(--text-secondary);
+/* IMAGE 2 STYLE: REPO CARD */
+.repos-grid { display: grid; gap: 15px; }
+.repo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
 }
+.repo-header { display: flex; justify-content: space-between; align-items: center; }
+.repo-name { color: #58a6ff; font-weight: 600; text-decoration: none; }
+.repo-stars { color: var(--star-yellow); font-size: 14px; }
+.repo-desc { color: var(--text-secondary); font-size: 14px; margin: 8px 0; }
+.repo-footer { display: flex; gap: 15px; font-size: 12px; color: var(--text-secondary); }
 
-.btn-bookmark .icon {
-    color: var(--bookmark-color);
+/* BUTTONS */
+.btn { padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border-color); cursor: pointer; color: white; }
+.primary { background: var(--accent-blue); border: none; }
+.secondary { background: #21262d; }
+.btn-view { background: #238af7; border: none; }
+.btn-remove { background: var(--accent-red); border: none; }
+
+/* LOADER */
+.loader {
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--accent-blue);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
 }
+@keyframes spin { to { transform: rotate(360deg); } }
