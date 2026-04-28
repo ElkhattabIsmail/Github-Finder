@@ -45,12 +45,20 @@ padding: 20px;
 display: flex;
 gap: 10px;
 margin-bottom: 20px;
+padding: 30px;
+}
+
+#loadingSection p {
+    padding-top: 20px;
+    
 }
 
 input {
 flex: 1;
+height: 50px;
 padding: 10px;
 border: none;
+border-radius: 12px;
 background: var(--card);
 color: var(--text);
 }
@@ -59,10 +67,14 @@ input:focus {
 outline: 1px solid var(--primary);
 }
 
+.Static-Section {
+    background-color: var(--secondary);
+}
 /* BUTTONS */
 .btn {
 padding: 10px 15px;
 border: none;
+border-radius: 12px;
 cursor: pointer;
 color: white;
 }
