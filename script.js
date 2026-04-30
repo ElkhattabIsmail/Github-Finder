@@ -1,27 +1,25 @@
 
 
 
-// 1. اختيار العناصر من الـ HTML (DOM Elements)
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 
-// الأقسام (Sections)
 const welcomeSection = document.getElementById('welcomeSection');
 const loadingSection = document.getElementById('loadingSection');
 const errorSection = document.getElementById('errorSection');
 const profileSection = document.getElementById('Github-Profile-Section');
 const topReposSection = document.getElementById('TopReposSection');
 
-// عناصر داخل الكارطة (Card Details)
 const reposList = document.getElementById('reposList');
 const bookmarkCount = document.getElementById('bookmarkCount');
 
-// 2. دالة لجلب بيانات المستخدم (Fetch User)
+
 async function fetchUser(username) {
     try {
-        const response = await fetch(`https://api.github.com/users/${username}`);
+        const response = await fetch(`https://api.github.com/users/${username}` ,{headers: {
+                'Authorization': `token ${env.Token}`
+            }});
         
-        // التعامل مع أخطاء الـ API
         if (response.status === 404) {
             throw new Error(`Utilisateur "@${username}" non trouvé`);
         } else if (response.status === 403) {
@@ -31,20 +29,21 @@ async function fetchUser(username) {
         }
 
         const data = await response.json();
-        return data; // كترجع لينا Object فيه معلومات البروفايل
+        return data; 
     } catch (error) {
-        throw error; // كتمشي لـ catch اللي غتكون فـ Event Listener
+        throw error;
     }
 }
 
-// 3. دالة لجلب أفضل الريبوزيتوريز (Fetch Top Repos)
 async function fetchUserRepos(username) {
     try {
-        // كنطلبوا 5 ديال الريبوزيتوريز مرتبين حسب النجوم (Stars)
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=5`);
-        if (!response.ok) return []; // إلا وقع مشكل نرجعو قائمة خاوية
+        if (!response.ok) return [];
+
         return await response.json();
-    } catch (error) {
+    } 
+    
+    catch (error) {
         console.error("Erreur Repos:", error);
         return [];
     }
@@ -63,10 +62,9 @@ function displayUser(user) {
     stats[1].textContent = user.followers;
     stats[2].textContent = user.following;
 
-    // تحديث رابط GitHub
     profileSection.querySelector('.btn-visit').href = user.html_url;
 
-    // إظهار القسم
+    // Show Section
     profileSection.classList.remove('hidden');
 }
 
@@ -76,7 +74,8 @@ function displayRepos(repos) {
     
     if (repos.length === 0) {
         reposList.innerHTML = '<p>Aucun repository public.</p>';
-    } else {
+    } 
+    else {
         repos.forEach(repo => {
             const repoCard = `
                 <div class="repo-card">
@@ -97,18 +96,17 @@ function displayRepos(repos) {
     topReposSection.classList.remove('hidden');
 }
 
-// 6. التحكم في الحالات (State Management)
+
 function showState(state) {
-    // إخفاء كلشي
+
     [welcomeSection, loadingSection, errorSection, profileSection, topReposSection].forEach(s => s.classList.add('hidden'));
 
-    // إظهار الحالة المطلوبة
     if (state === 'loading') loadingSection.classList.remove('hidden');
     if (state === 'error') errorSection.classList.remove('hidden');
     if (state === 'welcome') welcomeSection.classList.remove('hidden');
 }
 
-// 7. المنطق الرئيسي للبحث (Search Logic)
+
 async function handleSearch() {
     const username = searchInput.value.trim();
     if (!username) return;
@@ -116,23 +114,22 @@ async function handleSearch() {
     showState('loading');
 
     try {
-        // جلب البيانات فدقة وحدة
         const [user, repos] = await Promise.all([
             fetchUser(username),
             fetchUserRepos(username)
         ]);
 
-        showState('none'); // إخفاء Loading
+        showState('none'); 
         displayUser(user);
         displayRepos(repos);
 
-    } catch (error) {
+    } 
+    catch (error) {
         showState('error');
         errorSection.querySelector('.error-text').textContent = `❌ ${error.message}`;
     }
 }
 
-// 8. الـ Event Listeners
 searchBtn.addEventListener('click', handleSearch);
 
 searchInput.addEventListener('keypress', (e) => {
@@ -140,3 +137,5 @@ searchInput.addEventListener('keypress', (e) => {
         handleSearch();
     }
 });
+
+console.log(env)
