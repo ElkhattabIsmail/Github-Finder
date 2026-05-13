@@ -1,4 +1,5 @@
-// 1. اختيار العناصر من الـ DOM
+
+
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const welcomeSection = document.getElementById('welcomeSection');
@@ -9,13 +10,10 @@ const topReposSection = document.getElementById('TopReposSection');
 const reposList = document.getElementById('reposList');
 const bookmarkCount = document.getElementById('bookmarkCount');
 
-// متغير لحفظ بيانات آخر مستخدم تم البحث عنه (مهم للفافوري)
 let lastFetchedUser = null; 
 
-// 2. دالة جلب بيانات المستخدم
 async function fetchUser(username) {
     try {
-        // ملاحظة: تأكد أن env.Token معرف في مشروعك، أو استبدله بالتوكن مباشرة للتجربة
         const response = await fetch(`https://api.github.com/users/${username}`, {
             headers: {
                 'Authorization': `token ${env.Token}` 
@@ -36,10 +34,14 @@ async function fetchUser(username) {
     }
 }
 
-// 3. دالة جلب الريبوزيتوريز
 async function fetchUserRepos(username) {
     try {
-        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=5`);
+
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=5`, {
+             headers: {
+                'Authorization': `token ${env.Token}` 
+            }
+        });
         if (!response.ok) return [];
         return await response.json();
     } catch (error) {
@@ -48,7 +50,6 @@ async function fetchUserRepos(username) {
     }
 }
 
-// 4. تحديث واجهة المستخدم (البروفايل)
 function displayUser(user) {
     profileSection.querySelector('.profile-pic').src = user.avatar_url;
     profileSection.querySelector('.username').textContent = user.name || user.login;
@@ -64,7 +65,6 @@ function displayUser(user) {
     profileSection.classList.remove('hidden');
 }
 
-// 5. عرض الريبوزيتوريز
 function displayRepos(repos) {
     reposList.innerHTML = ''; 
     
@@ -91,7 +91,6 @@ function displayRepos(repos) {
     topReposSection.classList.remove('hidden');
 }
 
-// 6. إدارة الحالات (States)
 function showState(state) {
     [welcomeSection, loadingSection, errorSection, profileSection, topReposSection].forEach(s => s.classList.add('hidden'));
 
@@ -100,7 +99,6 @@ function showState(state) {
     if (state === 'welcome') welcomeSection.classList.remove('hidden');
 }
 
-// 7. المنطق الرئيسي للبحث
 async function handleSearch() {
     const username = searchInput.value.trim();
     if (!username) return;
@@ -113,7 +111,7 @@ async function handleSearch() {
             fetchUserRepos(username)
         ]);
 
-        lastFetchedUser = user; // حفظ البيانات هنا لاستخدامها في Bookmark
+        lastFetchedUser = user;
         
         showState('none'); 
         displayUser(user);
@@ -125,13 +123,11 @@ async function handleSearch() {
     }
 }
 
-// 8. Event Listeners للبحث
 searchBtn.addEventListener('click', handleSearch);
 searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') handleSearch();
 });
 
-// === نظام الفافوري (Bookmarks System) ===
 
 let bookmarks = JSON.parse(localStorage.getItem('github-bookmarks')) || [];
 updateBookmarkCount();
@@ -206,14 +202,12 @@ function renderBookmarks() {
     });
 }
 
-// جعل الدالة عالمية لتعمل مع onclick في HTML الديناميكي
 window.searchSpecificUser = function(username) {
     searchInput.value = username;
     handleSearch();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-// ربط بوطون الـ Bookmark الرئيسي
 document.querySelector('.btn-bookmark').addEventListener('click', () => {
     addBookmark(lastFetchedUser);
 });
